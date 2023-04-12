@@ -2,9 +2,9 @@ import { currencyFormatter } from "../utils/currencyFormatter";
 
 const ProjectFashion = ({ project }) => {
   return (
-    <div className="project bg-gray-800 p-5 rounded-xl shadow-xl border border-teal-900/60 flex flex-col gap-5 xl:w-[30rem]">
+    <div className="project bg-gray-800 p-5 rounded-xl shadow-xl border border-teal-900/60 flex flex-col gap-5 xl:w-[30rem] lg:w-[20rem]">
       <div className="top">
-        <span className="text-teal-600">ID: {project._id}</span>
+        <span className="text-teal-600 truncate">ID: {project._id}</span>
         <h3 className="text-2xl font-medium">{project.title}</h3>
         <span className="uppercase text-xs tracking-widest font-medium text-teal-400">
           {project.tech}

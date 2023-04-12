@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ProjectFashion from "../components/ProjectFashion";
+import ProjectForm from "../components/ProjectForm";
 
 const Home = () => {
   const [projects, setProjects] = useState([]);
@@ -16,7 +17,6 @@ const Home = () => {
         const data = await res.json();
         setProjects(data);
         setLoading(false);
-        console.log(data);
       } catch (err) {
         setError(err.message);
         setLoading(false);
@@ -26,8 +26,8 @@ const Home = () => {
   }, []);
 // how get ruturn
   return (
-    <div className="home container mx-auto py-20 grid lg:grid-cols-4 gap-10 grid-cols-3">
-      <div className="home-L lg:col-span-3 col-span-2">
+    <div className="home container mx-auto py-20 grid lg:grid-cols-3 gap-10 grid-cols-3">
+      <div className="home-L lg:col-span-2 col-span-2">
         <h2 className="text-4xl font-medium text-teal-400 mb-10">
           All projects
         </h2>
@@ -40,7 +40,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="home-R"></div>
+          <ProjectForm/>
     </div>
   );
 };
