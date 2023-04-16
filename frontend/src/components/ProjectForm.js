@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useProjectsContext } from "../hooks/useProjectsContext";
 
 const ProjectForm = () => {
   const [title, setTitle] = useState("");
@@ -9,17 +10,19 @@ const ProjectForm = () => {
   const [dev, setDev] = useState("");
   const [error, setError] = useState(null);
 
+  const { dispatch } = useProjectsContext();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // data
-    const project = { title, tech, budget, duration, manager, dev };
+    const projectObj = { title, tech, budget, duration, manager, dev };
     // post res
     const res = await fetch("http://localhost:5000/api/projects", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(project),
+      body: JSON.stringify(projectObj),
     });
     const data = await res.json();
     // if !res.ok setError
@@ -36,8 +39,9 @@ const ProjectForm = () => {
       setManager("");
       setDev("");
       setError(null);
+      dispatch({ type: "CREATE_PROJECT", payload: data });
 
-      console.log("new project has been added to the database", data);
+      //project ojbect has been  successed here
     }
   };
 
