@@ -9,7 +9,7 @@ const ProjectForm = () => {
   const [manager, setManager] = useState("");
   const [dev, setDev] = useState("");
   const [error, setError] = useState(null);
-
+  const [emptyFields, setEmptyFields] = useState([]);
   const { dispatch } = useProjectsContext();
 
   const handleSubmit = async (e) => {
@@ -29,6 +29,7 @@ const ProjectForm = () => {
 
     if (!res.ok) {
       setError(data.error);
+      setEmptyFields(data.emptyFields);
     }
 
     // res.ok , reset
@@ -39,6 +40,7 @@ const ProjectForm = () => {
       setManager("");
       setDev("");
       setError(null);
+      setEmptyFields([]);
       dispatch({ type: "CREATE_PROJECT", payload: data });
 
       //project ojbect has been  successed here
@@ -54,7 +56,7 @@ const ProjectForm = () => {
       <div className="from-control flex flex-col gap-2 ">
         <label
           htmlFor="title"
-          className="cursor-pointer hover:text-teal-500 duration-300 capitalize"
+          className="cursor-pointer hover:text-teal-500 duration-300 capitalize "
         >
           Project title
         </label>
@@ -64,7 +66,11 @@ const ProjectForm = () => {
           type="text"
           placeholder="e.g. e-commerce website"
           id="title"
-          className="bg-transparent border border-gray-500 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300"
+          className={`bg-transparent border border-gray-500 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300 ${
+            emptyFields.includes("title")
+              ? "border-rose-500 "
+              : "border-gray-500"
+          }`}
         />
       </div>
       <div className="from-control flex flex-col gap-2 ">
@@ -80,7 +86,11 @@ const ProjectForm = () => {
           type="text"
           placeholder="e.g. node.js, react, redux etc."
           id="tech"
-          className="bg-transparent border border-gray-500 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300"
+          className={`bg-transparent border border-gray-500 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300 ${
+            emptyFields.includes("tech")
+              ? "border-rose-500 "
+              : "border-gray-500"
+          }`}
         />
       </div>
       <div className="from-control flex flex-col gap-2 ">
@@ -96,7 +106,11 @@ const ProjectForm = () => {
           type="number"
           placeholder="e.g. 500$"
           id="Budget"
-          className="bg-transparent border border-gray-500 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300"
+          className={`bg-transparent border border-gray-500 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300 ${
+            emptyFields.includes("budget")
+              ? "border-rose-500 "
+              : "border-gray-500"
+          }`}
         />
       </div>
       <div className="from-control flex flex-col gap-2 ">
@@ -112,7 +126,11 @@ const ProjectForm = () => {
           type="number"
           placeholder="e.g. 3weeks"
           id="duration"
-          className="bg-transparent border border-gray-500 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300"
+          className={`bg-transparent border border-gray-500 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300 ${
+            emptyFields.includes("duration")
+              ? "border-rose-500 "
+              : "border-gray-500"
+          }`}
         />
       </div>
       <div className="from-control flex flex-col gap-2 ">
@@ -128,7 +146,11 @@ const ProjectForm = () => {
           type="text"
           placeholder="e.g. sofia"
           id="manager"
-          className="bg-transparent border border-gray-500 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300"
+          className={`bg-transparent border border-gray-500 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300 ${
+            emptyFields.includes("manager")
+              ? "border-rose-500 "
+              : "border-gray-500"
+          }`}
         />
       </div>
       <div className="from-control flex flex-col gap-2 ">
@@ -144,7 +166,9 @@ const ProjectForm = () => {
           type="number"
           placeholder="e.g. 5 developers"
           id="developer"
-          className="bg-transparent border border-gray-500 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300"
+          className={`bg-transparent border border-gray-500 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300 ${
+            emptyFields.includes("dev") ? "border-rose-500 " : "border-gray-500"
+          }`}
         />
       </div>
 
