@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useProjectsContext } from "../hooks/useProjectsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
   const [title, setTitle] = useState(project ? project.title : "");
@@ -10,10 +11,16 @@ const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
   const [dev, setDev] = useState(project ? project.dev : "");
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
+
   const { dispatch } = useProjectsContext();
+  const { user } = useAuthContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!user) {
+      setError("You must be logged in!");
+      return;
+    }
     // data
     const projectObj = { title, tech, budget, duration, manager, dev };
     //  if there is no project , send post request
@@ -23,6 +30,7 @@ const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
         },
         body: JSON.stringify(projectObj),
       });
@@ -58,6 +66,7 @@ const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
           },
           body: JSON.stringify(projectObj),
         }
