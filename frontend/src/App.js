@@ -13,7 +13,7 @@ const App = () => {
     <div className="app bg-gray-900 text-gray-50 min-h-screen">
       <Navbar />
       <Routes>
-        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/" element={user ? <Home /> : <Navigate to="/signup" />} />
         <Route
           path="/login"
           element={!user ? <Login /> : <Navigate to="/" />}

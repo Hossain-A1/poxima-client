@@ -17,9 +17,9 @@ const Navbar = () => {
         Proxima{" "}
       </Link>
 
-      <nav className="flex gap-5">
+      <nav className="">
         {!user && (
-          <div className="flex gap-5">
+          <div className="space-x-5">
             <Link to="/login" className="hover:text-teal-500 duration-300">
               Login
             </Link>
@@ -28,8 +28,8 @@ const Navbar = () => {
             </Link>
           </div>
         )}
-        {user && <div className="flex gap-5 items-center">
-          <span>{user.email}</span>
+        {user && <div className=" flex justify-center gap-5 items-center">
+          <span className="max-md:hidden">{user.email}</span>
           <button
           onClick={haldleLogout}
         type="submit"

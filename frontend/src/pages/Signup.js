@@ -7,11 +7,11 @@ const Signup = () => {
 
   const { signup, error, loading } = useSignup();
 
-  const handleSignup = async(e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
 
     // sign up user
-    await signup(email, password)
+    await signup(email, password);
   };
 
   return (
@@ -53,7 +53,7 @@ const Signup = () => {
         />
       </div>
       <button
-      disabled={loading}
+        disabled={loading}
         type="submit"
         className="bg-teal-500 text-gray-50 rounded-xl hover:bg-teal-600 duration-300 py-3 px-6 font-semibold mt-3"
       >

@@ -27,6 +27,12 @@ export const projectsReducer = (state, action) => {
       const [existingProject] = state.projects.filter(
         (project) => project._id === action.payload._id
       );
+
+      // If existingProject is not found, return the state as it is
+      if (!existingProject) {
+        return state;
+      }
+
       return {
         ...state,
         projects: [
@@ -36,16 +42,13 @@ export const projectsReducer = (state, action) => {
           ),
         ],
       };
-    default:
-      return state;
   }
 };
+
 export const ProjectContext = createContext();
+
 export const ProjectContextProvider = ({ children }) => {
-  const [state = initialState, dispatch] = useReducer(
-    projectsReducer,
-    initialState
-  );
+  const [state, dispatch] = useReducer(projectsReducer, initialState);
 
   return (
     <ProjectContext.Provider value={{ ...state, dispatch }}>

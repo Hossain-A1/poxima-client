@@ -3,21 +3,21 @@ import { useProjectsContext } from "../hooks/useProjectsContext";
 import { currencyFormatter } from "../utils/currencyFormatter";
 import moment from "moment";
 import ProjectForm from "./ProjectForm";
-import {useAuthContext, user} from "../hooks/useAuthContext"
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const ProjectFashion = ({ project }) => {
   const [isModal, setIsModal] = useState(false);
   const [isOverlay, setIsOverlay] = useState(false);
 
   const { dispatch } = useProjectsContext();
-  const {user} = useAuthContext()
+  const { user } = useAuthContext();
 
   const handleDelete = async () => {
-    if(!user){
-      return
+    if (!user) {
+      return;
     }
     const res = await fetch(
-      `http://localhost:5000/api/projects/${project._id}`,
+      `${process.env.REACT_APP_BASE_URL}/api/projects/${project._id}`,
       {
         method: "DELETE",
         headers: {

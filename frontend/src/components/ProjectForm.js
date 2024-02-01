@@ -26,7 +26,7 @@ const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
     //  if there is no project , send post request
     if (!project) {
       // post res
-      const res = await fetch("http://localhost:5000/api/projects", {
+      const res = await fetch(`${process.env.REACT_APP_BASE_URL}/api/projects`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +61,7 @@ const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
     if (project) {
       //send petch
       const res = await fetch(
-        `http://localhost:5000/api/projects/${project._id})`,
+        `${process.env.REACT_APP_BASE_URL}/api/projects/${project._id}`,
         {
           method: "PATCH",
           headers: {
@@ -95,7 +95,7 @@ const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="project-Form flex flex-col lg:gap-3.5  lg:h-screen xl:gap-5"
+      className="project-Form h-full flex flex-col lg:gap-3.5  lg:h-screen xl:gap-5"
     >
       <h2
         className={`lg:mb-2 lg:text-3xl text-4xl font-medium text-teal-400 mb-10 ${
@@ -105,7 +105,7 @@ const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
         Add a new project
       </h2>
 
-      <div className="from-control flex flex-col gap-2 lg:gap-0 ">
+      <div className="from-control flex flex-col gap-2  ">
         <label
           htmlFor="title"
           className="cursor-pointer hover:text-teal-500 duration-300 capitalize "
@@ -118,7 +118,7 @@ const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
           type="text"
           placeholder="e.g. e-commerce website"
           id="title"
-          className={`bg-transparent border border-gray-500 lg:py-1 py-2 px-5  outline-none rounded-lg focus:border-teal-500 duration-300 ${
+          className={`bg-transparent border border-gray-500  py-2 px-4  outline-none rounded-lg focus:border-teal-500 duration-300 ${
             emptyFields.includes("title")
               ? "border-rose-500 "
               : "border-gray-500"
@@ -138,7 +138,7 @@ const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
           type="text"
           placeholder="e.g. node.js, react, redux etc."
           id="tech"
-          className={`bg-transparent border border-gray-500 lg:py-1 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300 ${
+          className={`bg-transparent border border-gray-500  py-2 px-4 outline-none rounded-lg focus:border-teal-500 duration-300 ${
             emptyFields.includes("tech")
               ? "border-rose-500 "
               : "border-gray-500"
@@ -158,7 +158,7 @@ const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
           type="number"
           placeholder="e.g. 500$"
           id="Budget"
-          className={`bg-transparent border border-gray-500 lg:py-1 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300 ${
+          className={`bg-transparent border border-gray-500 py-2 px-4 outline-none rounded-lg focus:border-teal-500 duration-300 ${
             emptyFields.includes("budget")
               ? "border-rose-500 "
               : "border-gray-500"
@@ -178,7 +178,7 @@ const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
           type="number"
           placeholder="e.g. 3weeks"
           id="duration"
-          className={`bg-transparent border border-gray-500 lg:py-1 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300 ${
+          className={`bg-transparent border border-gray-500  py-2 px-4 outline-none rounded-lg focus:border-teal-500 duration-300 ${
             emptyFields.includes("duration")
               ? "border-rose-500 "
               : "border-gray-500"
@@ -198,14 +198,14 @@ const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
           type="text"
           placeholder="e.g. sofia"
           id="manager"
-          className={`bg-transparent border border-gray-500 lg:py-1 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300 ${
+          className={`bg-transparent border border-gray-500  py-2 px-4 outline-none rounded-lg focus:border-teal-500 duration-300 ${
             emptyFields.includes("manager")
               ? "border-rose-500 "
               : "border-gray-500"
           }`}
         />
       </div>
-      <div className="from-control flex flex-col gap-2 lg:gap-0 ">
+      <div className="from-control flex flex-col gap-2  ">
         <label
           htmlFor="developer"
           className="cursor-pointer hover:text-teal-500 duration-300 capitalize"
@@ -218,11 +218,11 @@ const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
           type="number"
           placeholder="e.g. 5 developers"
           id="developer"
-          className={`bg-transparent border border-gray-500 lg:py-1 py-2 px-5 outline-none rounded-lg focus:border-teal-500 duration-300 ${
+          className={`bg-transparent border border-gray-500 py-2 px-4 outline-none rounded-lg focus:border-teal-500 duration-300 ${
             emptyFields.includes("dev") ? "border-rose-500 " : "border-gray-500"
           }`}
         />
-      </div>
+    
 
       <button
         type="submit"
@@ -235,6 +235,7 @@ const ProjectForm = ({ project, setIsModal, setIsOverlay }) => {
           {error}
         </p>
       )}
+        </div>
     </form>
   );
 };
