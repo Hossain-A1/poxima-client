@@ -33,9 +33,9 @@ const Home = () => {
 
   // how get ruturn
   return (
-    <div className="home min-h-screen container mx-auto mt-20 grid  lg:grid-cols-3 gap-10 grid-cols-1">
+    <div className="home h-full w-full container mx-auto mt-20 flex max-lg:flex-col justify-between gap-5 ">
        <ProjectForm />
-      <div className="home-L lg:col-span-2 col-span-1">
+      <div className="home-L lg:col-span-2 ">
         <h2 className="text-4xl font-medium text-teal-400 mb-10">
           {projects.length < 1 ? "No projects" : "All projects"}
         </h2>

@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <div className="navber container mx-auto h-20 flex items-center justify-between border-b border-teal-950">
       <Link to="/" className="logo text-3xl font-medium text-teal-600">
-        Proxima{" "}
+        Closer{" "}
       </Link>
 
       <nav className="">
